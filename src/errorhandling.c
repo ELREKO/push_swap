@@ -18,7 +18,12 @@ void ft_free_lst(t_stack *lst)
 // Error handling
 void ft_throw_error(int errNum, t_stack **lst)
 {
-    if (errNum < 4)
+    if (errNum == -100)
+    {
+        write(1, "ERROR\n", 6);
+        write(1, "-- nothing to sort --\n",22);
+    }
+    if (errNum < 5)
     {
         ft_free_lst(*lst);
         if (errNum == 1)
@@ -36,11 +41,13 @@ void ft_throw_error(int errNum, t_stack **lst)
             write(1, "ERROR\n", 6);
             write(1, "-- dbl integer --\n",18);
         }
+        if (errNum == 4)
+        {
+            write(1, "ERROR\n", 6);
+            write(1, "-- sa(stack) or sb(stack) --\n",29);
+        }
     }
-    if (errNum == 4)
-    {
-        write(1, "ERROR\n", 6);
-        write(1, "-- nothing to sort --\n",22);
-    }
+
+    //5 -- erro sa or sb
     exit(0);  
 }

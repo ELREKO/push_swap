@@ -28,12 +28,15 @@ t_stack *ft_lastlst(t_stack *lst)
 }
 
 // create a new lst node and fill 
-t_stack *ft_lst_new (int value, int index, int isNum)
+t_stack *ft_lst_new (int value, int index, int isNum, int *error)
 {
     t_stack *lst_ret;
     lst_ret = malloc(sizeof(t_stack));
     if (!lst_ret)
+    {
+        *error = 1;
         return (NULL);
+    }
     lst_ret ->value = value;
     lst_ret ->index = index;
     lst_ret ->isNum = isNum;

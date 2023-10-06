@@ -48,10 +48,10 @@ int	ft_add_arg(t_stack **lst, char *str, int *error)
 		{
 			lst_ret = *lst;
 			if (lst_ret == NULL)
-				lst_ret = ft_lst_new(i_nbr, 0, 1);
+				lst_ret = ft_lst_new(i_nbr, 0, 1, error);
 			else
 			{
-				lst_tmp = ft_lst_new(i_nbr, 0, 1);
+				lst_tmp = ft_lst_new(i_nbr, 0, 1, error);
 				ft_lst_add_front(&lst_ret, lst_tmp);
 			}
 			*lst = lst_ret;
@@ -88,7 +88,7 @@ t_stack	*ft_read_arg(int argc, char **arg)
 	t_stack	*lst_ret;
 
 	if (argc <= 2)
-		ft_throw_error(4, &lst_ret);
+		ft_throw_error(-100, &lst_ret);
 	lst_ret = ft_lst_fill_arg(argc, arg);
 	ft_check_double(lst_ret);
 	return (lst_ret);

@@ -10,7 +10,8 @@ SRC  = 	main.c \
 		lst_operation.c \
 		utiles.c \
 		errorhandling.c \
-		rules.c
+		rules.c \
+		rules_swap.c
 
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 OBJ		= $(SRC:.c=.o)
