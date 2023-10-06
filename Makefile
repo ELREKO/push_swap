@@ -1,19 +1,25 @@
 CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Wextra
 NAME	= push_swap
 
 SRC_PATH = src/
 OBJ_PATH = obj/
 
 SRC  = 	main.c \
-		lst_operation.c
+		init.c \
+		lst_operation.c \
+		utiles.c \
+		errorhandling.c \
+		rules.c
 
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 OBJ		= $(SRC:.c=.o)
 OBJS	= $(addprefix $(OBJ_PATH), $(OBJ))
 INCS	= -I ./includes/
 
-all: $(OBJ_PATH) $(NAME) 
+all: $(OBJ_PATH) $(NAME)
+
+allgdb: $(OBJ_PATH) $(NAME) -g
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCS)
@@ -31,5 +37,7 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+gdb: fclean allgdb
 
 .PHONY: all clean fclean re

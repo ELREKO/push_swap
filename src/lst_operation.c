@@ -1,70 +1,58 @@
 #include "../includes/push_swap.h"
 
-int ft_pow_b_10(int pow)
+// count the list element 
+int ft_lstsize (t_stack *lst)
 {
-    int i_ret; 
-
-    i_ret = 1;
-    while (pow > 1)
-    { 
-        i_ret = i_ret * 10;
-        pow--;
-    }
-    return (i_ret);
-}
-
-int ft_char_nbr(char *str)
-{
+    //t_stack *lst_tmp;
     int i_count;
-    int i_len;
-    int i_ret;
 
-    i_len = 0;
+    //lst_tmp = lst;
     i_count = 0;
-    i_ret = 0;
-    while (str[i_len] != '\0')
-        i_len++;
-    while (i_len > 0)
-        i_ret = i_ret + ((str[i_count++] - 48) * ft_pow_b_10(i_len--));
-    return(i_ret);
+    while (lst)
+    {
+        lst = lst ->next;
+        i_count++;
+    }
+    return(i_count);
 }
 
-t_stack *ft_lst_fill_arg(int argc, char **arg)
+// find last list sruct
+t_stack *ft_lastlst(t_stack *lst)
 {
     t_stack *lst_ret;
-    t_stack *lst_head;
-    int i_count;
-    int i_arg;
 
-    i_count = 1;
+    lst_ret = lst;
+    while (lst_ret ->next != NULL)
+        lst_ret = lst_ret ->next;
+    return (lst_ret);
+}
+
+// create a new lst node and fill 
+t_stack *ft_lst_new (int value, int index, int isNum)
+{
+    t_stack *lst_ret;
     lst_ret = malloc(sizeof(t_stack));
     if (!lst_ret)
-        return(NULL);
-    lst_head = lst_ret;
-    while (i_count < argc)
-    {
-        i_arg = ft_char_nbr(arg[i_count++]);
-        lst_ret->value = i_arg;
-            if (i_count < argc) 
-            {
-                lst_ret->next = malloc(sizeof(t_stack));
-                if (!lst_ret->next)
-                    return (NULL);
-                lst_ret = lst_ret->next;
-            }
-            else
-                lst_ret->next = NULL;
-    }
-    lst_ret->next = NULL;
-    return(lst_head);
+        return (NULL);
+    lst_ret ->value = value;
+    lst_ret ->index = index;
+    lst_ret ->isNum = isNum;
+    lst_ret ->next = NULL;
+    return(lst_ret);
 }
 
-void ft_lst_print(t_stack *lst)
+void ft_lst_add_front (t_stack **lst_mod, t_stack *lst_front )
 {
-    while (lst->next != NULL)
-    {
-        printf("%i \n", lst->value );
-        lst = lst->next;
-    }
-    printf("%i \n", lst->value );
+    lst_front -> next = *lst_mod;
+    *lst_mod = lst_front;
 }
+
+void ft_lst_del_front (t_stack **lst_mod)
+{
+    t_stack *lst_tmp;
+
+    lst_tmp = *lst_mod;
+    *lst_mod = lst_tmp ->next;
+    free(lst_tmp);
+}
+

@@ -2,7 +2,19 @@
 
 int main(int argc, char **arg)
 {
-    printf("%i\n", ft_char_nbr("313237"));
-    ft_lst_print(ft_lst_fill_arg(argc, arg));
-    printf("Test");
+   
+    t_stack *stack_a;
+    t_stack *stack_b;
+
+    stack_a = ft_read_arg(argc, arg);
+    printf("\n-------------- Rules Check ----------------- \n");
+    printf("\n---Befor Swap \n");
+    ft_lst_print(stack_a);
+    printf("\n---After Swap \n");
+    ft_swap_revers(&stack_a, 2);
+    ft_lst_print(stack_a);
+    printf("\n---Swap again \n");
+    //ft_swap(&stack_a);
+    ft_lst_print(stack_a);
+    ft_free_lst(stack_a);
 }
