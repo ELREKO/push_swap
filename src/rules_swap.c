@@ -14,25 +14,25 @@
 
 static	void	ft_swap(t_stack **stack, int *error);
 
-void	ft_sa(t_stack **stack, int *error)
+void	ft_sa(t_stack **stack_a, int *error)
 {
-	if (ft_lstsize(*stack) < 2)
+	if (ft_lstsize(*stack_a) < 2)
 		*error = 4;
 	else
 	{
 		write(1, "sa\n", 3);
-		ft_swap(stack, error);
+		ft_swap(stack_a, error);
 	}
 }
 
-void	ft_sb(t_stack **stack, int *error)
+void	ft_sb(t_stack **stack_b, int *error)
 {
-	if (ft_lstsize(*stack) < 2)
+	if (ft_lstsize(*stack_b) < 2)
 		*error = 4;
 	else
 	{
 		write(1, "sb\n", 3);
-		ft_swap(stack, error);
+		ft_swap(stack_b, error);
 	}
 }
 
@@ -71,6 +71,8 @@ static	void	ft_swap(t_stack **stack, int *error)
 	lst_tmp ->isNum = lst_head ->isNum;
 	ft_free_lst(lst_head);
 }
+
+// !!!! Don't delete !!!! it is for revesr sort 
 
 // // changed the list reverse of the size you want! 
 // static	void	ft_revers(t_stack **stack, int i_rever_size, int *error)

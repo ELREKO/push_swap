@@ -6,7 +6,7 @@
 /*   By: rkost <rkost@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 19:54:14 by rkost             #+#    #+#             */
-/*   Updated: 2023/10/05 20:14:55 by rkost            ###   ########.fr       */
+/*   Updated: 2023/10/07 14:56:29 by rkost            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,11 @@ int	ft_check_on_nbr(char *str, int *error)
 // print from int lst
 void	ft_lst_print(t_stack *lst)
 {
+	if (!lst)
+	{
+		write (1, "stack NULL\n", 11);
+		return ;
+	}
 	while (lst->next != NULL)
 	{
 		printf("Value: |%i| -- index |%i| -- isNum: |%i|\n",

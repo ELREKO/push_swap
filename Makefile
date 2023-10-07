@@ -5,13 +5,15 @@ NAME	= push_swap
 SRC_PATH = src/
 OBJ_PATH = obj/
 
-SRC  = 	main.c \
+SRC  = 	errorhandling.c \
 		init.c \
 		lst_operation.c \
-		utiles.c \
-		errorhandling.c \
-		rules.c \
-		rules_swap.c
+		main.c \
+		rules_push.c \
+		rules_rotate_bw.c \
+		rules_rotate_fw.c \
+		rules_swap.c \
+		utiles.c
 
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 OBJ		= $(SRC:.c=.o)
