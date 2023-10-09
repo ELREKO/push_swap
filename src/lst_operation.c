@@ -50,7 +50,7 @@ t_stack	*ft_lst_new(int value, int index, int isNum, int *error)
 	}
 	lst_ret ->value = value;
 	lst_ret ->index = index;
-	lst_ret ->isNum = isNum;
+	lst_ret ->diff = isNum;
 	lst_ret ->next = NULL;
 	return (lst_ret);
 }

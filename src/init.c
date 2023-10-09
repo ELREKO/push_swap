@@ -48,10 +48,10 @@ int	ft_add_arg(t_stack **lst, char *str, int *error)
 		{
 			lst_ret = *lst;
 			if (lst_ret == NULL)
-				lst_ret = ft_lst_new(i_nbr, 0, 1, error);
+				lst_ret = ft_lst_new(i_nbr, 0, 0, error);
 			else
 			{
-				lst_tmp = ft_lst_new(i_nbr, 0, 1, error);
+				lst_tmp = ft_lst_new(i_nbr, 0, 0, error);
 				ft_lst_add_front(&lst_ret, lst_tmp);
 			}
 			*lst = lst_ret;

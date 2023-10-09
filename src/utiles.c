@@ -78,12 +78,12 @@ void	ft_lst_print(t_stack *lst)
 	}
 	while (lst->next != NULL)
 	{
-		printf("Value: |%i| -- index |%i| -- isNum: |%i|\n",
-			lst->value, lst->index, lst->isNum);
+		printf("Value: |%i| -- index |%i| -- diff: |%i|\n",
+			lst->value, lst->index, lst->diff);
 		lst = lst->next;
 	}
-	printf("Value: |%i| -- index |%i| -- isNum: |%i|\n",
-		lst->value, lst->index, lst->isNum);
+	printf("Value: |%i| -- index |%i| -- diff: |%i|\n",
+		lst->value, lst->index, lst->diff);
 }
 
 // Erzeugen der Zehnerpotenz

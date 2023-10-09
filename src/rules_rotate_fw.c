@@ -57,7 +57,7 @@ static	void	ft_rotate_forw(t_stack **lst, int *error)
 
 	lst_tmp = *lst;
 	lst_tail = ft_lst_new((*lst)->value, (*lst)->index,
-			(*lst)->isNum, error);
+			(*lst)->diff, error);
 	*lst = (*lst)->next;
 	free(lst_tmp);
 	lst_head = *lst;

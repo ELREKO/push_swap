@@ -43,7 +43,7 @@ static	void	ft_push(t_stack **lst_src, t_stack **lst_dest, int *error)
 
 	lst_tmp_src = *lst_src;
 	lst_tmp_front = ft_lst_new(lst_tmp_src->value, lst_tmp_src->index,
-			lst_tmp_src->isNum, error);
+			lst_tmp_src->diff, error);
 	ft_lst_add_front(lst_dest, lst_tmp_front);
 	ft_lst_del_front(lst_src);
 }

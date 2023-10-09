@@ -10,7 +10,7 @@ typedef struct s_stack
 {
     int value;
     int index;
-    int isNum;
+    int diff;
     struct s_stack *next;
 } t_stack;
 
@@ -47,6 +47,9 @@ void ft_rr(t_stack **stack_a, t_stack **stack_b, int *error);
 void ft_sa(t_stack **stack_a, int *error);
 void ft_sb(t_stack **stack_b, int *error);
 void ft_ss(t_stack **stack_a, t_stack **stack_b, int *error);
+
+// set_index.c
+void ft_set_index(t_stack **stack_a);
 
 // utiles.c
 int ft_char_nbr(char *str, int *error , int i_len);
