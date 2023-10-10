@@ -68,6 +68,23 @@ int	ft_check_on_nbr(char *str, int *error)
 	return (i_count);
 }
 
+int ft_check_range(t_stack *stack_a)
+{
+	t_stack *lst_tmp;
+	t_stack *lst_next;
+
+	lst_tmp = stack_a;
+	while (lst_tmp -> next != NULL)
+	{
+		lst_next = lst_tmp -> next;
+		if (lst_tmp ->value > lst_next ->value)
+			return (0);
+		lst_tmp = lst_tmp ->next;
+	}
+	return (1);
+}
+
+
 // print from int lst
 void	ft_lst_print(t_stack *lst)
 {
@@ -76,14 +93,12 @@ void	ft_lst_print(t_stack *lst)
 		write (1, "stack NULL\n", 11);
 		return ;
 	}
-	while (lst->next != NULL)
+	while (lst)
 	{
 		printf("Value: |%i| -- index |%i| -- diff: |%i|\n",
 			lst->value, lst->index, lst->diff);
 		lst = lst->next;
 	}
-	printf("Value: |%i| -- index |%i| -- diff: |%i|\n",
-		lst->value, lst->index, lst->diff);
 }
 
 // Erzeugen der Zehnerpotenz

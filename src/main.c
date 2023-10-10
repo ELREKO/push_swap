@@ -98,6 +98,12 @@ int main(int argc, char **arg)
     ft_lst_print(stack_a);
 
 
+    printf("\n----- Stack Sort a \n");
+    // if (argc == 4)
+    //     printf("%i\n", ft_sort_three(&stack_a, &error));
+    printf("%i\n", ft_sort_stack(&stack_a, &error));
+    ft_lst_print(stack_a);
+    
     ft_free_lst(stack_a);
     //ft_free_lst(stack_b);
 

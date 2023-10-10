@@ -17,8 +17,6 @@ static void	ft_set_high_index(t_stack **stack_a, int *i_max, int *i_size);
 
 void    ft_set_index(t_stack **stack_a)
 {
-    t_stack *lst_tmp;
-    t_stack *lst_cmp;
     int i_max;
     int i_size;
 
@@ -38,18 +36,18 @@ static void	ft_set_high_index(t_stack **stack_a, int *i_max, int *i_size)
 
 	lst_tmp = *stack_a;
 	lst_head = lst_tmp;
-	while (lst_tmp ->next != NULL)
+	while (lst_tmp)
 	{
-		if (*i_max < lst_tmp ->value && lst_tmp ->index == 0)
+		if (lst_tmp ->value > *i_max && lst_tmp ->index == 0)
 			*i_max = lst_tmp ->value;
 		lst_tmp = lst_tmp ->next;
 	}
 	lst_tmp = *stack_a;
-	while (lst_tmp ->value != *i_max && lst_tmp ->next != NULL)
+	while (lst_tmp)
+	{
+		if (lst_tmp -> value == *i_max && lst_tmp ->index == 0)
+			lst_tmp ->index = *i_size;
 		lst_tmp = lst_tmp ->next;
-	lst_tmp ->index = *i_size;
+	}
 	*stack_a = lst_head;
 }
-
-
-
