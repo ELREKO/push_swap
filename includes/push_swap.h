@@ -51,7 +51,13 @@ void ft_ss(t_stack **stack_a, t_stack **stack_b, int *error);
 // set_index.c
 void ft_set_index(t_stack **stack_a);
 
-// sort_stack_sort.c
+// sort_big_sort.c
+int ft_push_stack_b(t_stack **stack_a, t_stack **stack_b, int *error);
+int ft_search_index_befor(t_stack *lst, int index);
+int ft_sort_back(t_stack **stack_b, t_stack **stack_a, int *error);
+
+// sort_simple_sort.c
+int ft_find_highest_value (t_stack *lst);
 int ft_sort_three(t_stack **stack_a, int *error);
 int ft_sort_stack(t_stack **stack_a, int *error);
 
@@ -60,6 +66,7 @@ int ft_char_nbr(char *str, int *error , int i_len);
 int	ft_check_on_nbr(char *str, int *error);
 void ft_lst_print(t_stack *lst);
 int ft_check_range(t_stack *stack_a);
+
 
 
 #endif

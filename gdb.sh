@@ -6,6 +6,8 @@ cc      src/errorhandling.c \
         src/rules_rotate_fw.c \
         src/rules_rotate_bw.c \
         src/rules_swap.c \
+        src/sort_big_sort.c \
+        src/sort_simple_sort.c \
         src/set_index.c \
         src/utiles.c \
         includes/push_swap.h -g
