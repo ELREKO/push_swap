@@ -15,7 +15,6 @@ int main(int argc, char **arg)
     printf("\n---stack a \n");
     ft_lst_print(stack_a);
 
-
     printf("\n----- Stack Sort a \n");
 
     if (argc <= 4)
@@ -24,6 +23,7 @@ int main(int argc, char **arg)
         ft_push_stack_b(&stack_a, &stack_b, &error);
     printf("\n Stack_a \n");
     ft_lst_print(stack_a);
+
     printf("\n Stack_b \n");
     ft_lst_print(stack_b);
     
