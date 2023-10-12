@@ -42,7 +42,7 @@ int ft_search_index_befor(t_stack **lst, int index)
         if ((lst_tmp ->diff < 0) && (i_count < (i_size/2)))
             lst_tmp ->coast = i_count;
         else if ((lst_tmp ->diff < 0) && (i_count >= (i_size/2)))
-            lst_tmp ->coast = (i_count - i_size) + 1;
+            lst_tmp ->coast = (i_count - i_size);
         else if ((lst_tmp ->diff > 0) && (i_count < (i_size/2)))
             lst_tmp ->coast = i_count + 1;
         else if ((lst_tmp ->diff > 0) && (i_count >= (i_size/2)))
@@ -80,12 +80,12 @@ int ft_search_index_befor(t_stack **lst, int index)
     //printf ("\n\nimin |%i| imax |%i|\n\n", i_min  , i_max);
     while (lst_tmp)
     {
-        //printf ("i ret |%i|  -- i diff |%i| ", i_ret, lst_tmp ->diff);
+       // printf ("i ret |%i|  -- i diff |%i| \n\n", i_ret, lst_tmp ->diff);
         if (i_ret == lst_tmp ->diff)
         {
+            printf ("i ret |%i|  -- i diff |%i| \n\n", i_ret, lst_tmp ->diff);
             lst_tmp -> direction = 1;
-            i_ret = lst_tmp ->coast;
-            
+            i_count = lst_tmp ->coast;    
         }
         else 
             lst_tmp -> direction = 0;
@@ -93,14 +93,13 @@ int ft_search_index_befor(t_stack **lst, int index)
     } 
 
     printf ("\n\nDie Coasten sind |%i| \n\n", i_ret);
-    return (i_ret);
+    return (i_count);
 }
 
 // Pruefe index b und sort ein 
 int ft_sort_back(t_stack **stack_b, t_stack **stack_a, int *error)
 {
     int i_pos = 0;
-    int i_tmp = 0
     int i_count = 0;
 
     while (*stack_b)
@@ -114,11 +113,9 @@ int ft_sort_back(t_stack **stack_b, t_stack **stack_a, int *error)
 
         if (i_pos < 0)
         {
-            //i_tmp = i_pos - 1;
+            
             while (i_pos++ < 0)
                 ft_rra(stack_a, error);
-            // while (i_tmp++ <0)
-            //     ft_ra(stack_a, error);
         }
         else
         {
