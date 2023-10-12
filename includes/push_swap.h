@@ -6,6 +6,14 @@
 #include <unistd.h>
 #include <limits.h>
 
+typedef struct s_contain
+{
+    struct s_stack *stack_low_nnn_1000000;
+    struct s_stack *stack_low_0;
+    struct s_stack *stack_low_ppp_1000000;
+    struct s_stack *stack_high_ppp_1000000;
+} t_contain;
+
 typedef struct s_stack 
 {
     int value;
@@ -13,6 +21,7 @@ typedef struct s_stack
     int diff;
     int coast;
     int direction;
+    int max_coast;
     struct s_stack *next;
 } t_stack;
 

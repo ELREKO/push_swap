@@ -78,11 +78,51 @@ int ft_callculate_steps_StackA(t_stack **stack_A, int index)
     return (i_count);
 }
 
+// return the minmal coast wehre you could search for
+int ft_set_Choise(t_stack **stack_b)
+{
+    t_stack *lst_tmp;
+    int i_min = 2147483647; 
+
+    lst_tmp = *stack_b;
+    while (lst_tmp)
+    {
+        // gleiche Vorzeichen 
+        if (lst_tmp ->diff <= 0 &&  lst_tmp ->coast <= 0)
+        {
+            if (lst_tmp->coast <= lst_tmp->diff)
+                lst_tmp ->max_coast = (lst_tmp ->coast) * (-1);
+            else
+                lst_tmp ->max_coast = (lst_tmp ->diff * (-1));
+        }
+        else if (lst_tmp ->diff >= 0 &&  lst_tmp ->coast >= 0)
+        {
+            if ((lst_tmp->coast >= lst_tmp->diff))
+                lst_tmp ->max_coast = lst_tmp -> coast;
+            else
+                lst_tmp ->max_coast = lst_tmp ->diff;
+        }
+        else if (lst_tmp ->diff < 0)
+            lst_tmp -> max_coast = (lst_tmp ->diff * (-1)) + (lst_tmp ->coast);
+        else
+            lst_tmp -> max_coast = (lst_tmp ->coast * (-1)) + (lst_tmp ->diff);
+        lst_tmp = lst_tmp ->next;
+    }
+
+    lst_tmp = *stack_b;
+    while (lst_tmp)
+    {
+        if (lst_tmp ->max_coast < i_min)
+            i_min = lst_tmp ->max_coast;
+        lst_tmp = lst_tmp ->next;
+    }
+    return (i_min);
+}
 
 // set in stack B the coast for rotating in front
 // -> in diff wird die costen von A gespeichert!
 // -> in coast die Schritte fuer die Rotation an die push position 
-// -> spaeter Auswertung 
+// -> in direction best Chouise
 void ft_callculate_rotate_StackB(t_stack **stack_a, t_stack **stack_b)
 {
     t_stack *lst_tmp;
@@ -95,14 +135,14 @@ void ft_callculate_rotate_StackB(t_stack **stack_a, t_stack **stack_b)
     while (lst_tmp)
     {
         lst_tmp ->diff = ft_callculate_steps_StackA(stack_a, lst_tmp ->index);
-        //printf ("i am her \n")
         if (i_count < i_size/2)
             lst_tmp ->coast = i_count;
         else
             lst_tmp ->coast = i_count - i_size ;
         lst_tmp = lst_tmp ->next;
         i_count++;
-    }      
+    }
+    ft_set_Choise(stack_b);
     return;
 }
 
@@ -124,11 +164,15 @@ int ft_sort_back(t_stack **stack_b, t_stack **stack_a, int *error)
         i_pos = ft_callculate_steps_StackA(stack_a, (*stack_b)->index);
         ft_callculate_rotate_StackB(stack_a, stack_b);
 
-        printf (" \n\n ---die Position ist -- |%i| \n", i_pos);
+        printf (" \n\n ---die Position ist -- |%i| \n", ft_set_Choise(stack_b));
+
+       // printf (" \n\n ---die Position ist -- |%i| \n", i_pos);
         printf ("Stack a\n");
         ft_lst_print(*stack_a);
         printf ("Stack b\n");
         ft_lst_print(*stack_b);
+
+
 
         if (i_pos < 0)
         {
