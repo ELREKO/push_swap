@@ -38,7 +38,7 @@ t_stack	*ft_lastlst(t_stack *lst)
 }
 
 // create a new lst node and fill 
-t_stack	*ft_lst_new(int value, int index, int isNum, int *error)
+t_stack	*ft_lst_new(int value, int index, int diff, int rotation, int direktion,  int *error)
 {
 	t_stack	*lst_ret;
 
@@ -50,7 +50,9 @@ t_stack	*ft_lst_new(int value, int index, int isNum, int *error)
 	}
 	lst_ret ->value = value;
 	lst_ret ->index = index;
-	lst_ret ->diff = isNum;
+	lst_ret ->diff = diff;
+	lst_ret ->coast = rotation;
+	lst_ret ->direction = direktion;
 	lst_ret ->next = NULL;
 	return (lst_ret);
 }

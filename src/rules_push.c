@@ -45,7 +45,7 @@ static	void	ft_push(t_stack **lst_src, t_stack **lst_dest, int *error)
 	lst_tmp_src = *lst_src;
 	//lst_tmp_dest = *lst_dest;
 	lst_tmp_front = ft_lst_new(lst_tmp_src->value, lst_tmp_src->index,
-			lst_tmp_src->diff, error);
+			lst_tmp_src->diff, lst_tmp_src ->coast, lst_tmp_src ->direction, error);
 	if (lst_dest == NULL || *lst_dest == NULL)
 		*lst_dest = lst_tmp_front;
 	else

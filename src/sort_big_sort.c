@@ -19,14 +19,17 @@ int ft_push_stack_b(t_stack **stack_a, t_stack **stack_b, int *error)
 }
 
 
-// search next postion in stack -> return the diff wert what i must search!
+// search next postion in stack -> return 
 int ft_search_index_befor(t_stack **lst, int index)
 {
-    t_stack *lst_tmp; 
+    t_stack *lst_tmp;
+    int i_max_coast = 0;
+    int i_min_coast = 0;
     int i_max = 2147483647;
     int i_min = -2147483648;
     int i_ret = 0;
-    int i_count = 1;
+    int i_count = 0;
+    int i_size = ft_lstsize(*lst);
 
 
     lst_tmp = *lst;
@@ -34,53 +37,70 @@ int ft_search_index_befor(t_stack **lst, int index)
     while (lst_tmp)
     {
         //printf ("int lst |%i| and given index |%i|\n", (lst_tmp ->index), index);
-        lst_tmp ->diff = (lst_tmp ->index) - index; 
-        lst_tmp = lst_tmp ->next;
-    }
-    lst_tmp = *lst;
-    while (lst_tmp)
-    {
-     ///   printf("zess |%i|", lst_tmp ->diff );
-        if (lst_tmp ->diff < 0 && lst_tmp ->diff > i_min)
+        lst_tmp ->diff = index - (lst_tmp ->index); 
+
+        if ((lst_tmp ->diff < 0) && (i_count < (i_size/2)))
+            lst_tmp ->coast = i_count;
+        else if ((lst_tmp ->diff < 0) && (i_count >= (i_size/2)))
+            lst_tmp ->coast = (i_count - i_size) + 1;
+        else if ((lst_tmp ->diff > 0) && (i_count < (i_size/2)))
+            lst_tmp ->coast = i_count + 1;
+        else if ((lst_tmp ->diff > 0) && (i_count >= (i_size/2)))
+            lst_tmp ->coast = (i_count - i_size) + 1;
+
+
+        if (lst_tmp ->diff <= 0 && lst_tmp ->diff > i_min)
+        {
             i_min = lst_tmp ->diff;
+            //printf ("\n\n --- imin |%i| ----\n\n", i_min );
+            i_min_coast = lst_tmp ->coast;
+        }
         if (lst_tmp ->diff > 0 && lst_tmp ->diff < i_max)
+        {
             i_max = lst_tmp ->diff;
-        lst_tmp = lst_tmp ->next;
-    }
-   // suche kliensten abstand 
-    if ((i_min * (-1)) < i_max && i_min != -2147483648)
-        i_ret = i_min;
-    else
-        i_ret = i_max;
-    lst_tmp = *lst;
-     printf("\n i ret |%i|", i_ret);
-    while (lst_tmp)
-    {
-        printf("\ndrin %i", lst_tmp ->diff);
-        if (i_ret == lst_tmp ->diff)
-            return (i_count);
+            //printf ("\n\n ----imax |%i|\n\n", i_max);
+            i_max_coast = lst_tmp ->coast;
+        }
         lst_tmp = lst_tmp ->next;
         i_count++;
     }
-    return (i_count);
-    
-    
 
 
-    // if (!i_check)
-    // {
-    //     printf (" Fehler Index suche \"ft_search_index_befor\"");
-    //     exit(0);
-    // }
-    //return (i_count);
+
+    printf ("\n\nimin |%i| imax |%i|\n\n", i_min * -1 , i_max);
+    if ((i_min * (-1)) < i_max && i_min != -2147483648)
+        i_ret = i_min;
+    else
+        i_ret = i_max; 
+
+
+
+    lst_tmp = *lst;
+
+    //printf ("\n\nimin |%i| imax |%i|\n\n", i_min  , i_max);
+    while (lst_tmp)
+    {
+        //printf ("i ret |%i|  -- i diff |%i| ", i_ret, lst_tmp ->diff);
+        if (i_ret == lst_tmp ->diff)
+        {
+            lst_tmp -> direction = 1;
+            i_ret = lst_tmp ->coast;
+            
+        }
+        else 
+            lst_tmp -> direction = 0;
+        lst_tmp = lst_tmp ->next;
+    } 
+
+    printf ("\n\nDie Coasten sind |%i| \n\n", i_ret);
+    return (i_ret);
 }
 
 // Pruefe index b und sort ein 
 int ft_sort_back(t_stack **stack_b, t_stack **stack_a, int *error)
 {
     int i_pos = 0;
-    int i_size = 0;
-    int i_tmp = 0;
+    int i_tmp = 0
     int i_count = 0;
 
     while (*stack_b)
@@ -92,12 +112,13 @@ int ft_sort_back(t_stack **stack_b, t_stack **stack_a, int *error)
         printf ("Stack b\n");
         ft_lst_print(*stack_b);
 
-        !!!!!!! Position ist immer Positiv ich muss noch Auswerten wann ich vor oder zuruck drehen muss !!!! 
-
         if (i_pos < 0)
         {
+            //i_tmp = i_pos - 1;
             while (i_pos++ < 0)
                 ft_rra(stack_a, error);
+            // while (i_tmp++ <0)
+            //     ft_ra(stack_a, error);
         }
         else
         {

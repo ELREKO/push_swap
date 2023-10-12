@@ -95,8 +95,8 @@ void	ft_lst_print(t_stack *lst)
 	}
 	while (lst)
 	{
-		printf("Value: |%i| -- index |%i| -- diff: |%i|\n",
-			lst->value, lst->index, lst->diff);
+		printf("Value: |%i| -- index |%i| -- diff: |%i| -- coast |%i|-- direction |%i|\n",
+			lst->value, lst->index, lst->diff , lst ->coast ,lst ->direction);
 		lst = lst->next;
 	}
 }

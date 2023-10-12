@@ -11,6 +11,8 @@ typedef struct s_stack
     int value;
     int index;
     int diff;
+    int coast;
+    int direction;
     struct s_stack *next;
 } t_stack;
 
@@ -24,7 +26,7 @@ t_stack *ft_read_arg(int argc, char **arg);
 // lst_operation
 int ft_lstsize (t_stack *lst);
 t_stack *ft_lastlst(t_stack *lst);
-t_stack *ft_lst_new (int value, int index, int isNum, int *error);
+t_stack	*ft_lst_new(int value, int index, int diff, int rotation, int direktion,  int *error);
 void ft_lst_add_front (t_stack **lst_mod, t_stack *lst_front);
 void ft_lst_del_front (t_stack **lst_mod);
 

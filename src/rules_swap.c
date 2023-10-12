@@ -56,10 +56,10 @@ static	void	ft_swap(t_stack **stack, int *error)
 
 	lst_tmp = *stack;
 	lst_head = ft_lst_new(lst_tmp ->value, lst_tmp ->index, 
-			lst_tmp ->diff, error);
+			lst_tmp ->diff, lst_tmp ->coast, lst_tmp ->direction, error);
 	lst_tmp = lst_tmp ->next;
 	lst_next = ft_lst_new(lst_tmp ->value, lst_tmp ->index, 
-			lst_tmp ->diff, error);
+			lst_tmp ->diff, lst_tmp ->coast, lst_tmp ->direction, error);
 	lst_tmp = *stack;
 	lst_tmp ->value = lst_next ->value;
 	lst_tmp ->index = lst_next ->index;
