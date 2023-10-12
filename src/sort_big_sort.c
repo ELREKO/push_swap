@@ -83,18 +83,18 @@ int ft_callculate_steps_StackA(t_stack **stack_A, int index)
 // -> in diff wird die costen von A gespeichert!
 // -> in coast die Schritte fuer die Rotation an die push position 
 // -> spaeter Auswertung 
-void ft_callculate_rotate_StackB(t_stack **stack_B)
+void ft_callculate_rotate_StackB(t_stack **stack_a, t_stack **stack_b)
 {
     t_stack *lst_tmp;
     int i_count;
     int i_size;
 
-    i_size = ft_lstsize(*stack_B);
-    lst_tmp = *stack_B;
+    i_size = ft_lstsize(*stack_b);
+    lst_tmp = *stack_b;
     i_count = 0;
     while (lst_tmp)
     {
-        //ft_callculate_steps_StackA
+        lst_tmp ->diff = ft_callculate_steps_StackA(stack_a, lst_tmp ->index);
         //printf ("i am her \n")
         if (i_count < i_size/2)
             lst_tmp ->coast = i_count;
@@ -112,13 +112,18 @@ void ft_callculate_rotate_StackB(t_stack **stack_B)
 // Pruefe index b und sort ein 
 int ft_sort_back(t_stack **stack_b, t_stack **stack_a, int *error)
 {
+
+    t_stack *lst_tmp;
     int i_pos = 0;
     int i_count = 0;
 
+    lst_tmp = *stack_b;
+    ft_callculate_rotate_StackB(stack_a, stack_b);
     while (*stack_b)
     {    
         i_pos = ft_callculate_steps_StackA(stack_a, (*stack_b)->index);
-        ft_callculate_rotate_StackB(stack_b);
+        ft_callculate_rotate_StackB(stack_a, stack_b);
+
         printf (" \n\n ---die Position ist -- |%i| \n", i_pos);
         printf ("Stack a\n");
         ft_lst_print(*stack_a);
@@ -138,11 +143,63 @@ int ft_sort_back(t_stack **stack_b, t_stack **stack_a, int *error)
         }
         ft_pa(stack_a, stack_b, error);
         i_count++;
-        printf("done\n");
-        ft_lst_print(*stack_b);
+        //printf("done\n");
+        //ft_lst_print(*stack_b);
     }
 
-     printf("--- Out ---\n");
+    printf("--- Out ---\n");
     return (i_count);
 }
+
+/*
+
+Teste mit 
+
+./push_swap 3 -8 8 -7 -1 -5 7 -2 6 -19 -12
+
+intressante Punkte 
+
+---> geht auch mit |-2| schritten
+
+ ---die Position ist -- |3| 
+Stack a
+Value: |8| -- index |11| -- diff: |-3| -- coast |0|-- direction |0|
+Value: |-19| -- index |1| -- diff: |7| -- coast |2|-- direction |0|
+Value: |-12| -- index |2| -- diff: |6| -- coast |3|-- direction |0|
+Value: |-7| -- index |4| -- diff: |4| -- coast |4|-- direction |0|
+Value: |-5| -- index |5| -- diff: |3| -- coast |-4|-- direction |0|
+Value: |-2| -- index |6| -- diff: |2| -- coast |-3|-- direction |0|
+Value: |-1| -- index |7| -- diff: |1| -- coast |-2|-- direction |1|
+Value: |6| -- index |9| -- diff: |-1| -- coast |-2|-- direction |0|
+Value: |7| -- index |10| -- diff: |-2| -- coast |-1|-- direction |0|
+Stack b
+Value: |-8| -- index |3| -- diff: |3| -- coast |0|-- direction |0|
+Value: |3| -- index |8| -- diff: |-2| -- coast |-1|-- direction |0|
+
+
+OR 
+
+
+------> geht auch mit einr rotation 
+
+ ---die Position ist -- |2| 
+Stack a
+Value: |-2| -- index |6| -- diff: |2| -- coast |1|-- direction |0|
+Value: |6| -- index |9| -- diff: |-1| -- coast |1|-- direction |1|
+Value: |-19| -- index |1| -- diff: |7| -- coast |-1|-- direction |0|
+Value: |-12| -- index |2| -- diff: |6| -- coast |0|-- direction |0|
+Stack b
+Value: |7| -- index |10| -- diff: |2| -- coast |0|-- direction |0|
+Value: |-5| -- index |5| -- diff: |0| -- coast |1|-- direction |0|
+Value: |-1| -- index |7| -- diff: |1| -- coast |2|-- direction |0|
+Value: |-7| -- index |4| -- diff: |0| -- coast |-4|-- direction |0|
+Value: |8| -- index |11| -- diff: |2| -- coast |-3|-- direction |0|
+Value: |-8| -- index |3| -- diff: |0| -- coast |-2|-- direction |0|
+Value: |3| -- index |8| -- diff: |1| -- coast |-1|-- direction |0|
+
+
+
+
+
+*/
 
