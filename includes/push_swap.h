@@ -55,7 +55,7 @@ void ft_set_index(t_stack **stack_a);
 
 // sort_big_sort.c
 int ft_push_stack_b(t_stack **stack_a, t_stack **stack_b, int *error);
-int ft_search_index_befor(t_stack **lst, int index);
+int ft_callculate_steps_StackA(t_stack **lst, int index);
 int ft_sort_back(t_stack **stack_b, t_stack **stack_a, int *error);
 
 // sort_simple_sort.c
