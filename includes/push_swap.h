@@ -62,10 +62,14 @@ void ft_ss(t_stack **stack_a, t_stack **stack_b, int *error);
 // set_index.c
 void ft_set_index(t_stack **stack_a);
 
-// sort_big_sort.c
-int ft_push_stack_b(t_stack **stack_a, t_stack **stack_b, int *error);
-int ft_callculate_steps_StackA(t_stack **lst, int index);
-int ft_sort_back(t_stack **stack_b, t_stack **stack_a, int *error);
+// sort_big_sort_1.c
+int ft_big_sort(t_stack **stack_a, t_stack **stack_b, int *error);
+
+// sort_big_sort_2_callculate
+int ft_callculate_rotate_StackB(t_stack **stack_a, t_stack **stack_b);
+
+// sort_big_sort_3_pushback.c
+int ft_sort_back(t_stack **stack_a, t_stack **stack_b, int *error);
 
 // sort_simple_sort.c
 int ft_find_highest_value (t_stack *lst);

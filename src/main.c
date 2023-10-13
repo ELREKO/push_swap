@@ -20,7 +20,7 @@ int main(int argc, char **arg)
     if (argc <= 4)
         printf ("%i\n", ft_sort_three(&stack_a, &error));   
     else 
-        ft_push_stack_b(&stack_a, &stack_b, &error);
+        ft_big_sort(&stack_a, &stack_b, &error);
     printf("\n Stack_a \n");
     ft_lst_print(stack_a);
 

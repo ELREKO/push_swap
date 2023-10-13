@@ -14,7 +14,9 @@ SRC  = 	errorhandling.c \
 		rules_rotate_fw.c \
 		rules_swap.c \
 		set_index.c \
-		sort_big_sort.c \
+		sort_big_sort_1_main.c \
+		sort_big_sort_2_callculate.c \
+		sort_big_sort_3_pushback.c \
 		sort_simple_sort.c \
 		utiles.c
 
