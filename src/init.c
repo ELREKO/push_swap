@@ -27,7 +27,10 @@ void	ft_check_double(t_stack *lst)
 		{
 			lst = lst ->next;
 			if (lst_tmp->value == lst->value)
-				ft_throw_error(3, &lst_head, NULL);
+			{
+				lst_tmp = NULL;
+				ft_throw_error(3, &lst_head, &lst_tmp);
+			}
 		}
 		lst_tmp = lst_tmp->next;
 	}
@@ -67,6 +70,7 @@ int	ft_add_arg(t_stack **lst, char *str, int *error)
 t_stack	*ft_lst_fill_arg(int argc, char **arg)
 {
 	t_stack	*lst_ret;
+	t_stack *lst_tmp;
 	int		i_count;
 	int		error;
 
@@ -76,7 +80,10 @@ t_stack	*ft_lst_fill_arg(int argc, char **arg)
 	{
 		ft_add_arg(&lst_ret, arg[i_count - 1], &error);
 		if (error)
-			ft_throw_error (error, &lst_ret, NULL);
+		{
+			lst_tmp = NULL;
+			ft_throw_error (error, &lst_ret, &lst_tmp);
+		}
 		i_count--;
 	}
 	return (lst_ret);
@@ -86,9 +93,14 @@ t_stack	*ft_lst_fill_arg(int argc, char **arg)
 t_stack	*ft_read_arg(int argc, char **arg)
 {
 	t_stack	*lst_ret;
+	t_stack *lst_tmp;
 
 	if (argc <= 2)
-		ft_throw_error(-100, &lst_ret, NULL);
+	{
+		lst_ret = NULL;
+		lst_tmp = NULL;
+		ft_throw_error(-100, &lst_ret, &lst_tmp);
+	}
 	lst_ret = ft_lst_fill_arg(argc, arg);
 	ft_check_double(lst_ret);
 	return (lst_ret);

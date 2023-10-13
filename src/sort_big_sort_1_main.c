@@ -1,14 +1,23 @@
 #include "../includes/push_swap.h"
 
-static int ft_push_to_stack_b(t_stack **stack_a, t_stack **stack_b, int *error);
+static int ft_push_to_stack_b(t_stack **stack_a, t_stack **stack_b, int *i_error);
 
-int ft_big_sort(t_stack **stack_a, t_stack **stack_b, int *error)
+int ft_big_sort(t_stack **stack_a, t_stack **stack_b)
 {
     int i_count;
+    int i_err = 0;
 
-    i_count = ft_push_to_stack_b(stack_a,stack_b,error);
-    i_count = i_count + ft_sort_three(stack_a, error);
-    i_count = i_count + ft_sort_back(stack_a,stack_b,error);
+    i_count = 0;
+    i_count = ft_push_to_stack_b(stack_a, stack_b, &i_err);
+    if (i_err != 0)
+        ft_throw_error(i_err, stack_a, stack_b);
+    i_count = i_count + ft_sort_three(stack_a, stack_b);
+    i_count = i_count + ft_sort_back(stack_a,stack_b, &i_err);
+    if (i_err != 0)
+        ft_throw_error(i_err, stack_a, stack_b);
+    i_count = i_count + ft_rotate_first_positon(stack_a, &i_err);
+    if (i_err != 0)
+        ft_throw_error(i_err, stack_a, stack_b);
     return (i_count);
 }
 

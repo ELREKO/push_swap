@@ -30,49 +30,44 @@ void	ft_free_lst(t_stack *lst)
 // - Errror till 3 a errors for init
 void	ft_throw_error(int errNum, t_stack **lst_a, t_stack **lst_b)
 {
+	if ((*lst_a) != NULL)
+		ft_free_lst(*lst_a);
+	if ((*lst_b) != NULL)
+		ft_free_lst(*lst_b);
 	if (errNum == -100)
 	{
 		write(1, "ERROR\n", 6);
 		write(1, "-- nothing to sort --\n", 22);
 	}
-	else if (errNum < 4)
+	if (errNum == 1)
 	{
-		ft_free_lst(*lst_a);
-		if (errNum == 1)
-		{
-			write(1, "ERROR\n", 6);
-			write(1, "-- malloc lst --\n", 17);
-		}
-		if (errNum == 2)
-		{
-			write(1, "ERROR\n", 6);
-			write(1, "-- no integer --\n", 17);
-		}
-		if (errNum == 3)
-		{
-			write(1, "ERROR\n", 6);
-			write(1, "-- dbl integer --\n", 18);
-		}
+		write(1, "ERROR\n", 6);
+		write(1, "-- malloc lst --\n", 17);
 	}
-	else if (errNum < 7)
+	if (errNum == 2)
 	{
-		ft_free_lst(*lst_a);
-		ft_free_lst(*lst_b);
-		if (errNum == 4)
-		{
-			write(1, "ERROR\n", 6);
-			write(1, "-- swap stack lower 2--\n", 25);
-		}
-		if (errNum == 5)
-		{
-			write(1, "ERROR\n", 6);
-			write(1, "-- Push stack is Empty --\n", 26);
-		}
-		if (errNum == 6)
-		{
-			write(1, "ERROR\n", 6);
-			write(1, "-- noting to rotate --\n", 24);
-		}
+		write(1, "ERROR\n", 6);
+		write(1, "-- no integer --\n", 17);
+	}
+	if (errNum == 3)
+	{
+		write(1, "ERROR\n", 6);
+		write(1, "-- dbl integer --\n", 18);
+	}
+	if (errNum == 4)
+	{
+		write(1, "ERROR\n", 6);
+		write(1, "-- swap stack lower 2--\n", 25);
+	}
+	if (errNum == 5)
+	{
+		write(1, "ERROR\n", 6);
+		write(1, "-- Push stack is Empty --\n", 26);
+	}
+	if (errNum == 6)
+	{
+		write(1, "ERROR\n", 6);
+		write(1, "-- noting to rotate --\n", 24);
 	}
 	write(1, "EXIT - PROGRAMM\n", 16); 
 	exit (0);
