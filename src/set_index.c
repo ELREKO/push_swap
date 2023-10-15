@@ -6,7 +6,7 @@
 /*   By: rkost <rkost@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 12:38:40 by rkost             #+#    #+#             */
-/*   Updated: 2023/10/09 12:40:51 by rkost            ###   ########.fr       */
+/*   Updated: 2023/10/15 18:59:53 by rkost            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,19 @@
 // find and set the heigest index
 static void	ft_set_high_index(t_stack **stack_a, int *i_max, int *i_size);
 
-void    ft_set_index(t_stack **stack_a)
+void	ft_set_index(t_stack **stack_a)
 {
-    int i_max;
-    int i_size;
+	int	i_max;
+	int	i_size;
 
-    i_size = ft_lstsize(*stack_a);
-    while (i_size > 0)
-    {
-        i_max = -2147483648;
-        ft_set_high_index(stack_a, &i_max, &i_size);
-        i_size--;    
-    }
+	i_size = ft_lstsize(*stack_a);
+	while (i_size > 0)
+	{
+		i_max = -2147483648;
+		ft_set_high_index(stack_a, &i_max, &i_size);
+		i_size--;
+	}
+	return ;
 }
 
 static void	ft_set_high_index(t_stack **stack_a, int *i_max, int *i_size)

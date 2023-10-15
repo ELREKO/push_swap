@@ -6,7 +6,7 @@
 /*   By: rkost <rkost@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 16:00:05 by rkost             #+#    #+#             */
-/*   Updated: 2023/10/05 19:49:58 by rkost            ###   ########.fr       */
+/*   Updated: 2023/10/15 18:27:20 by rkost            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ int	ft_add_arg(t_stack **lst, char *str, int *error)
 		{
 			lst_ret = *lst;
 			if (lst_ret == NULL)
-				lst_ret = ft_lst_new(i_nbr, 0, 0, 0 ,0,  error);
+				lst_ret = ft_lst_new(i_nbr, 0, 0, error);
 			else
 			{
-				lst_tmp = ft_lst_new(i_nbr, 0, 0, 0, 0, error);
+				lst_tmp = ft_lst_new(i_nbr, 0, 0, error);
 				ft_lst_add_front(&lst_ret, lst_tmp);
 			}
 			*lst = lst_ret;
@@ -64,6 +64,52 @@ int	ft_add_arg(t_stack **lst, char *str, int *error)
 		return (1);
 	}
 	return (0);
+}
+
+void	ft_split_arg(t_stack **lst_ret, char *str, int *error)
+{
+	t_stack	*lst_tmp;
+	int		i_count;
+	int		i_count_read;
+	char	*str_value;
+
+	i_count = ft_strlen(str) - 1;
+	while (i_count >= 0)
+	{
+		i_count_read = 0;
+		while (str[i_count] != ' ' && str[i_count] != '\t' && 
+			str[i_count] != '\0')
+		{
+			i_count_read++;
+			i_count--;
+		}
+		if (i_count_read > 0)
+		{
+			str_value = (char *)malloc(sizeof (char) * (i_count_read + 1));
+			if (!str_value)
+			{
+				*error = 2;
+				return ;
+			}
+			i_count_read = 0;
+			i_count++;
+			while (str[i_count] != ' ' && str[i_count] != '\t' && 
+				str[i_count] != '\0')
+				str_value[i_count_read++] = str[i_count++];
+			str_value[i_count_read] = '\0';
+			ft_add_arg(lst_ret, str_value, error);
+			if (*error)
+			{
+				printf ("error %i\n", *error);
+				lst_tmp = NULL;
+				ft_throw_error (*error, lst_ret, &lst_tmp);
+			}
+			free(str_value);
+			i_count = i_count - i_count_read;
+		}
+		i_count--;
+	}
+	return ;
 }
 
 //Fill the list 
@@ -76,15 +122,20 @@ t_stack	*ft_lst_fill_arg(int argc, char **arg)
 
 	i_count = argc;
 	lst_ret = NULL;
-	while (i_count <= argc && i_count > 1)
+	if (argc == 2)
+		ft_split_arg(&lst_ret, arg[i_count - 1], &error);
+	else
 	{
-		ft_add_arg(&lst_ret, arg[i_count - 1], &error);
-		if (error)
+		while (i_count <= argc && i_count > 1)
 		{
-			lst_tmp = NULL;
-			ft_throw_error (error, &lst_ret, &lst_tmp);
+			ft_add_arg(&lst_ret, arg[i_count - 1], &error);
+			if (error)
+			{
+				lst_tmp = NULL;
+				ft_throw_error (error, &lst_ret, &lst_tmp);
+			}
+			i_count--;	
 		}
-		i_count--;
 	}
 	return (lst_ret);
 }
@@ -95,7 +146,7 @@ t_stack	*ft_read_arg(int argc, char **arg)
 	t_stack	*lst_ret;
 	t_stack *lst_tmp;
 
-	if (argc <= 2)
+	if (argc < 2)
 	{
 		lst_ret = NULL;
 		lst_tmp = NULL;

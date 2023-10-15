@@ -1,35 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_big_sort_2_callculate.c                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rkost <rkost@student.42berlin.de>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/15 19:07:26 by rkost             #+#    #+#             */
+/*   Updated: 2023/10/15 19:10:03 by rkost            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 
-static int ft_finde_best_choise_stack_a(t_stack **stack_A, int index);
-static int ft_find_lowest_differnc_Stack_a(t_stack **stack_a, int index);
-static void ft_callculate_max_coast(t_stack **stack_b);
-static int ft_find_best_choise(t_stack **stack_b);
-
+static int	ft_finde_best_choise_stack_a(t_stack **stack_A, int index);
+static int	ft_find_lowest_differnc_Stack_a(t_stack **stack_a, int index);
+static void	ft_callculate_max_coast(t_stack **stack_b);
+static int	ft_find_best_choise(t_stack **stack_b);
 
 // set in stack B the coast for rotating in front
 // -> in "diff" die guenstigsten Kosten aus Stack A gespeichert!
 // -> in "coast" die Schritte fuer die Rotation an die push position 
 // -> in "max_coast" wird die Differnce zwichen den beiden gespeichert
-int ft_callculate_rotate_StackB(t_stack **stack_a, t_stack **stack_b)
+int	ft_callculate_rotate_StackB(t_stack **stack_a, t_stack **stack_b)
 {
-    t_stack *lst_tmp;
-    int i_count;
-    int i_size;
+	t_stack	*lst_tmp;
+	int	i_count;
+	int	i_size;
 
-    i_size = ft_lstsize(*stack_b);
-    lst_tmp = *stack_b;
-    i_count = 0;
-    while (lst_tmp)
-    {
-        lst_tmp ->diff = ft_finde_best_choise_stack_a(stack_a, lst_tmp ->index);
-        if (i_count < i_size/2 || i_size == 1)
-            lst_tmp ->coast = i_count;
-        else
-            lst_tmp ->coast = i_count - i_size;
-        lst_tmp = lst_tmp ->next;
-        i_count++;
-    }
-    return (ft_find_best_choise(stack_b));
+	i_size = ft_lstsize(*stack_b);
+	lst_tmp = *stack_b;
+	i_count = 0;
+	while (lst_tmp)
+	{
+		lst_tmp ->diff = ft_finde_best_choise_stack_a(stack_a, lst_tmp ->index);
+		if (i_count < i_size/2 || i_size == 1)
+			lst_tmp ->coast = i_count;
+		else
+			lst_tmp ->coast = i_count - i_size;
+		lst_tmp = lst_tmp ->next;
+		i_count++;
+	}
+	return (ft_find_best_choise(stack_b));
 }
 
 

@@ -35,7 +35,7 @@ t_stack *ft_read_arg(int argc, char **arg);
 // lst_operation
 int ft_lstsize (t_stack *lst);
 t_stack *ft_lastlst(t_stack *lst);
-t_stack	*ft_lst_new(int value, int index, int diff, int rotation, int direktion,  int *error);
+t_stack	*ft_lst_new(int value, int index, int diff, int *error);
 void ft_lst_add_front (t_stack **lst_mod, t_stack *lst_front);
 void ft_lst_del_front (t_stack **lst_mod);
 
@@ -77,11 +77,18 @@ int ft_rotate_first_positon(t_stack **stack_a, int *error);
 // sort_simple_sort.c
 int ft_sort_three(t_stack **stack_a, t_stack **stack_b);
 
-// utiles.c
+// utiles_1.c
 int ft_char_nbr(char *str, int *error , int i_len);
 int	ft_check_on_nbr(char *str, int *error);
 void ft_lst_print(t_stack *lst);
 int ft_check_range(t_stack *stack_a);
+
+// utiles_2.c
+void ft_str_print(char *str);
+int ft_strlen(char *str);
+
+// utiles_ft_itoa.c
+char	*ft_itoa(int n);
 
 
 

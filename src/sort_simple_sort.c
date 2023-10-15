@@ -26,8 +26,6 @@ int ft_sort_three(t_stack **stack_a, t_stack **stack_b)
         else if ((*stack_a) ->next ->value < (*stack_a) ->value)
             ft_sa(stack_a, &error);
         i_count++;
-        if (i_count > 7)
-            break;
     }
     if (error)
         ft_throw_error(error, stack_a, stack_b);

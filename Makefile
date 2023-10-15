@@ -19,7 +19,9 @@ SRC  = 	errorhandling.c \
 		sort_big_sort_3_pushback.c \
 		sort_big_sort_4_rotat_first_postion.c \
 		sort_simple_sort.c \
-		utiles.c
+		utiles_1.c \
+		utiles_2.c \
+		utiles_ft_itoa.c 
 
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 OBJ		= $(SRC:.c=.o)
