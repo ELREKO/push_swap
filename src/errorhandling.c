@@ -6,7 +6,7 @@
 /*   By: rkost <rkost@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 15:06:49 by rkost             #+#    #+#             */
-/*   Updated: 2023/10/15 18:11:56 by rkost            ###   ########.fr       */
+/*   Updated: 2023/10/16 09:46:01 by rkost            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ void	ft_free_lst(t_stack *lst)
 		free(tmp);
 	}
 	lst = NULL;
+}
+
+// becouse i could not have more than 25 lines per function 
+// i have to read this short function
+void	ft_throw_error_ft_arg(t_stack **lst_ret, int error)
+{
+	t_stack	*lst_tmp;
+
+	lst_tmp = NULL;
+	ft_throw_error(error, lst_ret, &lst_tmp);
 }
 
 void	ft_throw_error(int errNum, t_stack **lst_a, t_stack **lst_b)

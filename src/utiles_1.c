@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utiles.c                                           :+:      :+:    :+:   */
+/*   utiles_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkost <rkost@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 19:54:14 by rkost             #+#    #+#             */
-/*   Updated: 2023/10/07 14:56:29 by rkost            ###   ########.fr       */
+/*   Updated: 2023/10/16 13:23:51 by rkost            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ int	ft_check_on_nbr(char *str, int *error)
 	return (i_count);
 }
 
-int ft_check_range(t_stack *stack_a)
+int	ft_check_range(t_stack *stack_a)
 {
-	t_stack *lst_tmp;
-	t_stack *lst_next;
+	t_stack	*lst_tmp;
+	t_stack	*lst_next;
 
 	lst_tmp = stack_a;
 	while (lst_tmp -> next != NULL)
@@ -84,7 +84,6 @@ int ft_check_range(t_stack *stack_a)
 	return (1);
 }
 
-
 // print from int lst
 void	ft_lst_print(t_stack *lst)
 {
@@ -95,8 +94,11 @@ void	ft_lst_print(t_stack *lst)
 	}
 	while (lst)
 	{
-		printf("Value: |%i| -- index |%i| -- diff: |%i| -- coast |%i|-- direction |%i| -- max coast |%i| \n",
-			lst->value, lst->index, lst->diff , lst ->coast ,lst ->direction, lst ->max_coast);
+		write(1, " value: ", 8);
+		ft_str_print(ft_itoa(lst->value));
+		write(1, " -- index: ", 11);
+		ft_str_print(ft_itoa(lst->index));
+		write(1, "\n", 1);
 		lst = lst->next;
 	}
 }

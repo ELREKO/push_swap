@@ -15,6 +15,13 @@
 static int	ft_push_to_stack_b(t_stack **stack_a, t_stack **stack_b,
 				int *i_error);
 
+// it push all to stack_b let a rest from 3 values in stack_a
+// - Sort the last 3 in stack_
+// - Callculate the shortest steps for pushing back to stack_a 
+// from stack_b --> Callculate the maximum Step for each value in
+// stack_b to move back in stack_a in the right way! 
+// for callculate using a index to callculate a differce
+// Than push back the Value with lowest steps! 
 int	ft_big_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int	i_count;

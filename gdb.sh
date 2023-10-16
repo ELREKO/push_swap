@@ -14,7 +14,7 @@ cc      src/errorhandling.c \
         src/set_index.c \
         src/utiles_1.c \
 	src/utiles_2.c \
-	src/utiles_ft_itoa.c 
+	src/utiles_ft_itoa.c \
         includes/push_swap.h -g
 echo "Fertig"
 #gdb ./a.out
