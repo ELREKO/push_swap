@@ -12,10 +12,6 @@
 
 #include "../includes/push_swap.h"
 
-// to give the integer of steps use
-// --> AFTER LINE 30 "ft_str_print(str_tmp)";
-// to sehe the sortete list use
-// --> AFTER LINE 30 "ft_lst_print(stack_a);"
 int	main(int argc, char **arg)
 {
 	t_stack	*stack_a;
