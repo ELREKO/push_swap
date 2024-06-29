@@ -27,7 +27,7 @@ The possible commands are:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/push_swap.git
+   git clone https://github.com/ELREKO/push_swap.git
    cd push_swap
    ```
 
