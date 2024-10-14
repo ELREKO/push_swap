@@ -23,7 +23,7 @@ The possible commands are:
 - `rrb` (reverse rotate b): Shifts all elements of stack b down by one position.
 - `rrr` (reverse rotate both): Performs `rra` and `rrb` simultaneously.
 
-  (Look)[doc/Rules_view.md]
+  [Look](doc/Rules_view.md)
 
 ## Installation
 
